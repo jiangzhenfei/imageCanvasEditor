@@ -1,0 +1,19 @@
+html,body,div,p,a,ul,li,ol{
+    margin: 0;
+    padding: 0;
+}
+.imageContainer{
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: aqua;
+}
+.imageContainer .image-item{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+.imageContainer .image-item img{
+    width: 100%;
+    height: 100%;
+}
