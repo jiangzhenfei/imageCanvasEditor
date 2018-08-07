@@ -1,0 +1,24 @@
+{
+  "name": "imageeditor",
+  "version": "1.0.0",
+  "description": "* 图片处理demo #### 启动demo  ```bash node server.js ``` 打开localhost:8000即可",
+  "main": "server.js",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangzhenfei/imageCanvasEditor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiangzhenfei/imageCanvasEditor/issues"
+  },
+  "homepage": "https://github.com/jiangzhenfei/imageCanvasEditor#readme"
+}
