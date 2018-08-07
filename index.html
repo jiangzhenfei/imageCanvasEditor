@@ -7,19 +7,34 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <title>Document</title>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
 </head>
 <body>
     <div class="imageContainer">
     </div>
+    <button class="create">生成合成图片</button>
+    <button class="base">将合成的图片转成base64</button>
     <div class="canvasContainer">
         <canvas id="canvas" width="500px" height="500px"></canvas>
     </div>
 
-    <div class="canvasContainer">
-        <canvas id="canvas2" width="500px" height="500px"></canvas>
-    </div>
+   <script>
+       let i = new ImageEditor({
+            el:document.querySelector('.imageContainer'),
+            canvas:document.querySelector('#canvas')
+        })
+        i.addImage( './images/left.jpg')
+        setTimeout(()=>{
+            i.addImage( './images/right.jpg')
+        },2000)
 
-    <script src="./js/canvas.js"></script>
-    <script src="./js/index.js"></script>
+        
+        $('.create').click(function(){
+            i.create()
+        })
+        $('.base').click(function(){
+            i.canvasToURL()
+        })
+   </script>
 </body>
 </html>

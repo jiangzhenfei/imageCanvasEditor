@@ -12,21 +12,24 @@ function Html(src){
         `
     )
 }
-
 class ImageEditor{
-    constructor ( el ) {
-        this.el = el;
-        this.clientLeft = el.clientLeft
-        this.clientTop = el.clientTop
-        this.$el = $(el)
+    constructor ( json ) {
+        this.el = json.el;
+        this.canvas = json.canvas;
+        this.ctx = json.canvas.getContext("2d");
+        this.clientLeft = this.el.clientLeft;
+        this.clientTop = this.el.clientTop;
+        this.$el = $(this.el)
         this.canMove = false;
         this.canScale = false;
+        this.imgs = []
         this.init()
     }
     init(){
         this.imgMove()
         this.scale()
     }
+    //添加图片
     addImage(src){
         var $html = $(Html(src))
         this.$el.append( $html )
@@ -82,14 +85,26 @@ class ImageEditor{
         })
         this.$el.on('mouseup',function(){
             for( var i = 0;i< self.$el.find('.left').length;i++){
-
                 self.$el.find('.left')[i].canScale = false
             }
         })
     }
+    //合成图片
+    create(){
+        let imgs = this.$el.find('img')
+        let con = this.$el.find('.image-item')
+        this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)
+        for(var i = 0;i<con.length;i++){
+            let img = imgs[i]
+            let left = parseFloat(con.eq(i).css('left'))
+            let top = parseFloat(con.eq(i).css('top'))
+            let width = parseFloat(con.eq(i).css('width'))
+            let height = parseFloat(con.eq(i).css('height'))
+            this.ctx.drawImage(img,left,top,width,height);
+        }
+    }
+    //合成的图片转成base64
+    canvasToURL(){
+        return this.canvas.toDataURL("image/png")
+    }
 }
-let i = new ImageEditor(document.querySelector('.imageContainer'))
-i.addImage( './images/left.jpg')
-setTimeout(()=>{
-    i.addImage( './images/right.jpg')
-},2000)
